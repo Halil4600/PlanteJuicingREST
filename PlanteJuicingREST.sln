@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanteJuicingREST", "PlanteJuicingREST\PlanteJuicingREST.csproj", "{510D28EC-8795-47CC-BC42-BDBC4A165E42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanteJuicingRESTTests", "PlanteJuicingRESTTests\PlanteJuicingRESTTests.csproj", "{6A913080-0517-4877-B798-C0C0AD235167}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{510D28EC-8795-47CC-BC42-BDBC4A165E42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{510D28EC-8795-47CC-BC42-BDBC4A165E42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{510D28EC-8795-47CC-BC42-BDBC4A165E42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A913080-0517-4877-B798-C0C0AD235167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A913080-0517-4877-B798-C0C0AD235167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A913080-0517-4877-B798-C0C0AD235167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A913080-0517-4877-B798-C0C0AD235167}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
