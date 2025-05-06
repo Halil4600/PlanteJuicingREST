@@ -6,23 +6,18 @@ namespace PlanteJuicingREST.Repositories
 {
     public class JordfugtighedRepository : IJordfugtighedRepository
     {
-        private readonly PlanteJucingDbContext _context;
+       
 
-        public JordfugtighedRepository(PlanteJucingDbContext context)
-        {
-            _context = context;
-        }
+        private List<Jordfugtighed> _jordfugtighedList = new List<Jordfugtighed>();
 
 
-
-        
         public IEnumerable<Jordfugtighed> GetAllJordfugtighed()
         {
-            return _context.Jordfugtighed.ToList();
+            return _jordfugtighedList;
         }
         public Jordfugtighed Add(Jordfugtighed jordfugtighed)
         {
-            _context.Jordfugtighed.Add(jordfugtighed);
+            _jordfugtighedList.Add(jordfugtighed);
             //_context.SaveChanges();
             return jordfugtighed;
         }
