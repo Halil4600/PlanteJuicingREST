@@ -44,11 +44,9 @@ builder.Services.AddControllers();
 // public dbset <jordFugtighed> jordfugtigheds { get; set; }
 var app = builder.Build();
 
-if(app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 app.UseCors("AllowAllOrigins");
 
 // Configure the HTTP request pipeline.
