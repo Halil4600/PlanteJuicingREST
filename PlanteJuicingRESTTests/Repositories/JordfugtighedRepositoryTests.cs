@@ -1,44 +1,63 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PlanteJuicingREST.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PlanteJuicingREST.Models;
+using PlanteJuicingREST.Interface;
+using Microsoft.EntityFrameworkCore;
 
-namespace PlanteJuicingREST.Repositories.Tests
+using System.Linq;
+
+
+namespace PlanteJuicingREST.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class JordfugtighedRepositoryTests
     {
-        [TestMethod()]
+        private IJordfugtighedRepository _repository;
+        private PlanteJucingDbContext _context;
+        [TestInitialize]
+       
+public void Init()
+{
+    var options = new DbContextOptionsBuilder<PlanteJucingDbContext>()
+        .UseSqlServer("Data Source=mssql17.unoeuro.com;User ID=professionaleducationnetwor_dk;Password=yEA9Hna25RtmGxpkfgdB;Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+        .Options;
+
+    _context = new PlanteJucingDbContext(options);
+    _repository = new JordfugtighedRepository(_context);
+}
+
+
+
+
+        [TestMethod]
         public void GetAllJordfugtighedTest()
         {
             // Arrange
-            var repository = new JordfugtighedRepository();
             var jordfugtighed1 = new Jordfugtighed { Id = 1, JordfugtighedValue = 50 };
             var jordfugtighed2 = new Jordfugtighed { Id = 2, JordfugtighedValue = 60 };
-            repository.Add(jordfugtighed1);
-            repository.Add(jordfugtighed2);
+            _repository.Add(jordfugtighed1);
+            _repository.Add(jordfugtighed2);
+
             // Act
-            var result = repository.GetAllJordfugtighed();
+            var result = _repository.GetAllJordfugtighed();
+
             // Assert
             Assert.AreEqual(2, result.Count());
-            Assert.AreEqual(jordfugtighed1, result.First());
-
+            Assert.AreEqual(50, result.First().JordfugtighedValue);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void AddTest()
         {
             // Arrange
-            var repository = new JordfugtighedRepository();
             var jordfugtighed = new Jordfugtighed { Id = 1, JordfugtighedValue = 50 };
+
             // Act
-            var result = repository.Add(jordfugtighed);
+            var result = _repository.Add(jordfugtighed);
+
             // Assert
             Assert.AreEqual(jordfugtighed, result);
-            Assert.AreEqual(1, repository.GetAllJordfugtighed().Count());
+            Assert.AreEqual(1, _repository.GetAllJordfugtighed().Count());
         }
     }
 }
