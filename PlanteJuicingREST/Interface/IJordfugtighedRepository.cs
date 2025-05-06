@@ -4,7 +4,7 @@ namespace PlanteJuicingREST.Interface
 {
     public interface IJordfugtighedRepository
     {
-        IEnumerable<Jordfugtighed> GetAllJordfugtighed();
+        List<Jordfugtighed> GetAllJordfugtighed();
         Jordfugtighed Add(Jordfugtighed jordfugtighed);
     }
 }

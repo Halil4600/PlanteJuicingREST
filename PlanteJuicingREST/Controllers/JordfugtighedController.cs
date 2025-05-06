@@ -1,4 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlanteJuicingREST.Interface;
+using PlanteJuicingREST.Models;
+using PlanteJuicingREST.Repositories;
+using PlanteJuicingREST.Records;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,37 +14,58 @@ namespace PlanteJuicingREST.Controllers
     [ApiController]
     public class JordfugtighedController : ControllerBase
     {
-
-        // GET: api/<JordfugtighedController>
+        private readonly IJordfugtighedRepository _jordfugtighedRepository;
+        public JordfugtighedController(IJordfugtighedRepository jordfugtighedRepository)
+        {
+            _jordfugtighedRepository = jordfugtighedRepository;
+        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        // GET: api/<JordfugtighedController> get metoden neden under linje 34 til 43 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult <IEnumerable<Jordfugtighed>> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
+            IEnumerable<Jordfugtighed> result = _jordfugtighedRepository.GetAllJordfugtighed();
+            if (result.Any())
+            {
+                return Ok(result);
+            }
+            return NotFound("No jordfugtighed found");
 
-        // GET api/<JordfugtighedController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
         }
+        
+        
+
+        
 
         // POST api/<JordfugtighedController>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Jordfugtighed> Post([FromBody]JordFugtighedsRecord newjordFugtighedsRecord)
         {
-        }
+            try
+            {
 
-        // PUT api/<JordfugtighedController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+                Jordfugtighed jordfugtighedConverted = RecordHelper.ConvertJordFugtighedRecord(newjordFugtighedsRecord);
+                Jordfugtighed jordfugtighed = _jordfugtighedRepository.Add(jordfugtighedConverted);
+                return Created("**" + jordfugtighedConverted.Id, jordfugtighed);
 
-        // DELETE api/<JordfugtighedController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+
+
+            }
+            
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+           
+        
         }
     }
 }
