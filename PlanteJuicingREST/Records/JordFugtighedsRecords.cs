@@ -20,8 +20,8 @@ namespace PlanteJuicingREST.Records
 
 
 
-
-    public record JordFugtighedsRecord(int id, int jordfugtighedValue);
+    //tilføjelse af temp userstory 13
+    public record JordFugtighedsRecord(int id, int jordfugtighedValue, int temp);
 
     public static class RecordHelper
     {
@@ -35,10 +35,17 @@ namespace PlanteJuicingREST.Records
             {
                 throw new ArgumentNullException("exception" + record.jordfugtighedValue);
             }
+            if (record.temp == null)
+            {
+                throw new ArgumentNullException("exception" + record.temp);
+            }
+
+            //tilføjelse af temp userstory 13
             return new Jordfugtighed()
             {
                 Id = (int)record.id,
-                JordfugtighedValue = (int)record.jordfugtighedValue
+                JordfugtighedValue = (int)record.jordfugtighedValue,
+                Temp = (int)record.temp
             };
 
         }

@@ -14,7 +14,10 @@ namespace PlanteJuicingREST.Repositories
             new Jordfugtighed { Id = 2, JordfugtighedValue = 20 },
             new Jordfugtighed { Id = 3, JordfugtighedValue = 30 },
 
-
+            // add temp her - ny userstoriy 13
+            new Jordfugtighed {Id = 4, JordfugtighedValue = 40, Temp = 10 },
+            new Jordfugtighed {Id = 5, JordfugtighedValue = 60, Temp = 20 },
+            new Jordfugtighed {Id = 6, JordfugtighedValue = 70, Temp = 30 },
 
         };
 

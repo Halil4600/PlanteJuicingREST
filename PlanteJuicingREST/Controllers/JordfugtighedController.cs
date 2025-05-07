@@ -33,7 +33,10 @@ namespace PlanteJuicingREST.Controllers
             return NotFound("No jordfugtighed found");
 
         }
-        
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpGet]
         
 
         
