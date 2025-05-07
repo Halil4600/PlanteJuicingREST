@@ -24,7 +24,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddScoped<IJordfugtighedRepository, JordfugtighedRepository>();
 
-builder.Services.AddSingleton<IJordfugtighedRepository, JordfugtighedRepository>();
+builder.Services.AddSingleton<ISoilMoistureRepository, SoilMoistureRepository>();
+builder.Services.AddSingleton<ITempRepository, TempRepository>();
 
 
 // Add services to the container.
@@ -40,7 +41,7 @@ builder.Services.AddControllers();
 
 // dbContext med connection string 
 
-// tilføj transient med med vores jordfugtighedsrepository for at forbind dbcontext med database 
+// tilfï¿½j transient med med vores jordfugtighedsrepository for at forbind dbcontext med database 
 // public dbset <jordFugtighed> jordfugtigheds { get; set; }
 var app = builder.Build();
 

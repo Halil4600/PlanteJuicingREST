@@ -1,12 +1,11 @@
 ﻿namespace PlanteJuicingREST.Models
 {
-    public class Jordfugtighed
+    public class TempModel
     {
         private int _id;
-        private int _jordfugtighed;
-
+       
         //add temperatur
-        private int _temp; 
+        private int _temp;
 
         public int Id
         {
@@ -18,30 +17,19 @@
                 _id = value;
             }
         }
-        public int JordfugtighedValue
+       
+        public int TempValue
         {
-            get => _jordfugtighed;
+            get => _temp;
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("jordfugtighed must be higher than 0");
-
-                _jordfugtighed = value;
-            }
-        }
-
-        public int Temp
-        {
-            get => _temp;
-            set 
-            {
-                if (_temp < 0)
                     throw new ArgumentOutOfRangeException("temperatur must be higer than 0");
 
                 _temp = value;
-            
+
             }
-            
+
         }
 
         public override string ToString()

@@ -9,7 +9,7 @@ namespace PlanteJuicingREST
             DbContextOptions<PlanteJucingDbContext> options)
             : base(options) { }
 
-        public DbSet<Jordfugtighed> Jordfugtighed { get; set; }
+        public DbSet<SoilMoistureModel> Jordfugtighed { get; set; }
         }
     }
 
