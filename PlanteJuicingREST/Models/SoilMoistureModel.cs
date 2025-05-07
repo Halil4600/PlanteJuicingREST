@@ -1,11 +1,10 @@
 ﻿namespace PlanteJuicingREST.Models
 {
-    public class Jordfugtighed
+    public class SoilMoistureModel
     {
         private int _id;
-        private int _jordfugtighed;
-
-
+        private int _soilMoisture;
+        
         public int Id
         {
             get => _id;
@@ -16,15 +15,15 @@
                 _id = value;
             }
         }
-        public int JordfugtighedValue
+        public int SoilMoistureValue
         {
-            get => _jordfugtighed;
+            get => _soilMoisture;
             set
             {
                 if (value < 0)
                     throw new ArgumentOutOfRangeException("jordfugtighed must be higher than 0");
 
-                _jordfugtighed = value;
+                _soilMoisture = value;
             }
         }
 
