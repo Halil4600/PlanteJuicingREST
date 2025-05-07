@@ -3,57 +3,27 @@ using PlanteJuicingREST.Interface;
 using PlanteJuicingREST.Models;
 using PlanteJuicingREST.Repositories;
 
-
-
 namespace PlanteJuicingREST.Records
-
 {
-
-
-
-
-
+    public record SoilMoistureRecord(int id, int soilMoistureValue);
     
-
-
-
-
-
-
-
-    public record JordFugtighedsRecord(int id, int jordfugtighedValue);
-
     public static class RecordHelper
     {
-        public static Jordfugtighed ConvertJordFugtighedRecord(JordFugtighedsRecord record)
+        public static SoilMoistureModel ConvertSoilMoistureRecord(SoilMoistureRecord record)
         {
             if (record.id == null)
             {
                 throw new ArgumentNullException("exception" + record.id);
             }
-            if (record.jordfugtighedValue == null)
+            if (record.soilMoistureValue == null)
             {
-                throw new ArgumentNullException("exception" + record.jordfugtighedValue);
+                throw new ArgumentNullException("exception" + record.soilMoistureValue);
             }
-            return new Jordfugtighed()
+            return new SoilMoistureModel()
             {
                 Id = (int)record.id,
-                JordfugtighedValue = (int)record.jordfugtighedValue
+                SoilMoistureValue = (int)record.soilMoistureValue
             };
-
         }
-
-
-
     }
-
-
-   
-
-
-
 }
-
-      
-
-

@@ -9,52 +9,43 @@ using PlanteJuicingREST.Records;
 
 namespace PlanteJuicingREST.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class JordfugtighedController : ControllerBase
+    public class SoilMoistureController : ControllerBase
     {
-        private readonly IJordfugtighedRepository _jordfugtighedRepository;
-        public JordfugtighedController(IJordfugtighedRepository jordfugtighedRepository)
+        private readonly ISoilMoistureRepository _soilMoistureRepository;
+        public SoilMoistureController(ISoilMoistureRepository soilMoistureRepository)
         {
-            _jordfugtighedRepository = jordfugtighedRepository;
+            _soilMoistureRepository = soilMoistureRepository;
         }
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         // GET: api/<JordfugtighedController> get metoden neden under linje 34 til 43 
         [HttpGet]
-        public ActionResult <IEnumerable<Jordfugtighed>> Get()
+        public ActionResult <IEnumerable<SoilMoistureModel>> Get()
         {
-            IEnumerable<Jordfugtighed> result = _jordfugtighedRepository.GetAllJordfugtighed();
+            IEnumerable<SoilMoistureModel> result = _soilMoistureRepository.GetAllSoilMoisture();
             if (result.Any())
             {
                 return Ok(result);
             }
-            return NotFound("No jordfugtighed found");
+            return NotFound("No soil moisture found");
 
         }
         
-        
-
-        
-
         // POST api/<JordfugtighedController>
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
-        public ActionResult<Jordfugtighed> Post([FromBody]JordFugtighedsRecord newjordFugtighedsRecord)
+        public ActionResult<SoilMoistureModel> Post([FromBody] SoilMoistureRecord newSoilMoistureRecord)
         {
             try
             {
 
-                Jordfugtighed jordfugtighedConverted = RecordHelper.ConvertJordFugtighedRecord(newjordFugtighedsRecord);
-                Jordfugtighed jordfugtighed = _jordfugtighedRepository.Add(jordfugtighedConverted);
-                return Created("**" + jordfugtighedConverted.Id, jordfugtighed);
-
-
-
+                SoilMoistureModel soilMoistureModelConverted = RecordHelper.ConvertSoilMoistureRecord(newSoilMoistureRecord);
+                SoilMoistureModel soilMoistureModel = _soilMoistureRepository.Add(soilMoistureModelConverted);
+                return Created("**" + soilMoistureModelConverted.Id, soilMoistureModel);
             }
-            
             catch (ArgumentNullException ex)
             {
                 return BadRequest(ex.Message);
@@ -63,9 +54,6 @@ namespace PlanteJuicingREST.Controllers
             {
                 return BadRequest(ex.Message);
             }
-
-           
-        
         }
     }
 }
