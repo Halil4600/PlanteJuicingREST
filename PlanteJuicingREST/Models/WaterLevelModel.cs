@@ -1,9 +1,11 @@
 ﻿namespace PlanteJuicingREST.Models
 {
-    public class TempModel
+    public class WaterLevelModel
     {
         private int _id;
-        private int _temp;
+        private int _waterLevel;
+
+
 
         public int Id
         {
@@ -15,24 +17,25 @@
                 _id = value;
             }
         }
-       
-        public int TempValue
+
+
+
+        public int WaterLevelValue
         {
-            get => _temp;
+            get => _waterLevel;
             set
             {
                 if (value < 0)
-                    throw new ArgumentOutOfRangeException("temperatur must be higer than 0");
-
-                _temp = value;
-
+                    throw new ArgumentOutOfRangeException("waterlevel must be higher than 0");
+                _waterLevel = value;
             }
-
         }
-
         public override string ToString()
         {
             return base.ToString();
         }
     }
 }
+
+
+
