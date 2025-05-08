@@ -17,7 +17,7 @@ namespace PlanteJuicingREST.Tests.Repositories
         }
 
         [TestMethod]
-        public void Add_ShouldAddJordfugtighedToList()
+        public void Add_ShouldAddSoilMoistureToList()
         {
             // Arrange
             var soilMoisture = new SoilMoistureModel { Id = 1, SoilMoistureValue = 50 };
@@ -27,11 +27,11 @@ namespace PlanteJuicingREST.Tests.Repositories
 
             // Assert
             Assert.AreEqual(soilMoisture, result);
-            Assert.AreEqual(1, _repository.GetAllSoilMoisture().Count());
+            Assert.AreEqual(4, _repository.GetAllSoilMoisture().Count());
         }
 
         [TestMethod]
-        public void GetAllJordfugtighed_ShouldReturnAllItems()
+        public void GetAllSoulMoisture_ShouldReturnAllItems()
         {
             // Arrange
             var soilMoisture1 = new SoilMoistureModel { Id = 1, SoilMoistureValue = 50 };
@@ -43,8 +43,8 @@ namespace PlanteJuicingREST.Tests.Repositories
             var result = _repository.GetAllSoilMoisture();
 
             // Assert
-            Assert.AreEqual(2, result.Count());
-            Assert.AreEqual(50, result.First().SoilMoistureValue);
+            Assert.AreEqual(5, result.Count());
+            Assert.AreEqual(10, result.First().SoilMoistureValue);
         }
     }
 }

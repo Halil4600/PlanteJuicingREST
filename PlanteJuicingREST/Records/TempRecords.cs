@@ -5,26 +5,26 @@ using PlanteJuicingREST.Repositories;
 
 namespace PlanteJuicingREST.Records
 {
-    public record SoilMoistureRecord(int id, int soilMoistureValue);
+    public record TempRecords(int id, int tempValue);
     
-    public static class RecordHelperSoilMoisterValue
+    public static class RecordHelperTemp
     {
-        public static SoilMoistureModel ConvertSoilMoistureRecord(SoilMoistureRecord record)
+        public static TempModel ConvertTempRecords(TempRecords record)
         {
             if (record.id == null)
             {
                 throw new ArgumentNullException("exception" + record.id);
             }
-            if (record.soilMoistureValue == null)
+            if (record.tempValue == null)
             {
-                throw new ArgumentNullException("exception" + record.soilMoistureValue);
+                throw new ArgumentNullException("exception" + record.tempValue);
             }
         
             //tilføjelse af temp userstory 13
-            return new SoilMoistureModel()
+            return new TempModel()
             {
                 Id = (int)record.id,
-                SoilMoistureValue = (int)record.soilMoistureValue
+                TempValue = (int)record.tempValue
             };
         }
     }

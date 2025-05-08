@@ -42,7 +42,7 @@ namespace PlanteJuicingREST.Controllers
             try
             {
 
-                SoilMoistureModel soilMoistureModelConverted = RecordHelper.ConvertSoilMoistureRecord(newSoilMoistureRecord);
+                SoilMoistureModel soilMoistureModelConverted = RecordHelperSoilMoisterValue.ConvertSoilMoistureRecord(newSoilMoistureRecord);
                 SoilMoistureModel soilMoistureModel = _soilMoistureRepository.Add(soilMoistureModelConverted);
                 return Created("**" + soilMoistureModelConverted.Id, soilMoistureModel);
             }
