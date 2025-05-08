@@ -26,6 +26,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ISoilMoistureRepository, SoilMoistureRepository>();
 builder.Services.AddSingleton<ITempRepository, TempRepository>();
+builder.Services.AddSingleton<IWaterLevelRepository, WaterLevelRepository>();
 
 
 // Add services to the container.
