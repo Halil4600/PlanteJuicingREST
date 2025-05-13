@@ -9,11 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PlanteJuicingREST.Models;
 using System;
 
-
-
-
-
-
     namespace PlanteJuicingREST.Tests.Models
     {
 
@@ -92,7 +87,7 @@ using System;
                 // Arrange
                 var model = new TempModel();
 
-                // Act
+                // Act 
                 model.TempValue = -10;
             }
 

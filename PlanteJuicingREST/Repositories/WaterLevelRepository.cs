@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using PlanteJuicingREST.Interface;
 using PlanteJuicingREST.Models;
+using PlanteJuicingREST.PDbContext;
 
 namespace PlanteJuicingREST.Repositories
 {
@@ -8,26 +9,41 @@ namespace PlanteJuicingREST.Repositories
     {
         private static int nextId = 4;
 
-        private List<WaterLevelModel> _waterLevelList = new List<WaterLevelModel>()
-        {
-            new WaterLevelModel { Id = 1, WaterLevelValue = 10 },
-            new WaterLevelModel { Id = 2, WaterLevelValue = 20 },
-            new WaterLevelModel { Id = 3, WaterLevelValue = 30 },
-        };
+        private readonly PlantDbContext _context;
 
-        public List<WaterLevelModel> GetAllWaterLevel()
-        {
-            return _waterLevelList;
 
+        // tilføjelse her 
+        public WaterLevelRepository(PlantDbContext context)
+        {
+            _context = context;
         }
 
         public WaterLevelModel Add(WaterLevelModel waterLevelModel)
         {
             waterLevelModel.Id = nextId++;
-            _waterLevelList.Add(waterLevelModel);
-            //_context.SaveChanges();
+            _context.WaterLevel.Add(waterLevelModel);
+            _context.SaveChanges();
             return waterLevelModel;
         }
+
+
+        //private List<WaterLevelModel> _waterLevelList = new List<WaterLevelModel>()
+        //{
+        //    new WaterLevelModel { Id = 1, WaterLevelValue = 10 },
+        //    new WaterLevelModel { Id = 2, WaterLevelValue = 20 },
+        //    new WaterLevelModel { Id = 3, WaterLevelValue = 30 },
+        //};
+
+        public List<WaterLevelModel> GetAllWaterLevel()
+        {
+
+            List<WaterLevelModel> _waterLevelList = new List<WaterLevelModel>();
+            _waterLevelList = _context.WaterLevel.ToList();
+            return _waterLevelList;
+
+        }
+
+        
     }
  
 }

@@ -9,6 +9,13 @@ using PlanteJuicingREST.Records;
 
 namespace PlanteJuicingREST.Controllers
 {
+
+    //soil moisture controller for
+    // Temp Controller 
+    // Iwater LEvel controller
+
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class SoilMoistureController : ControllerBase
@@ -55,5 +62,13 @@ namespace PlanteJuicingREST.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
     }
+    // 
+
+
+
+
+
+
 }
