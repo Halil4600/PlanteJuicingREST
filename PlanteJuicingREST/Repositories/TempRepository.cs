@@ -42,10 +42,7 @@ namespace PlanteJuicingREST.Repositories
             // måske skal der tilføjese noget her?? måske en liste 
             List<TempModel> _temp = new List<TempModel>();
             _temp = _context.Temp.ToList();
-
-
             return _temp;
-
         }
 
 

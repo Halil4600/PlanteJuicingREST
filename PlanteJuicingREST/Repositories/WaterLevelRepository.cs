@@ -25,8 +25,6 @@ namespace PlanteJuicingREST.Repositories
             _context.SaveChanges();
             return waterLevelModel;
         }
-
-
         //private List<WaterLevelModel> _waterLevelList = new List<WaterLevelModel>()
         //{
         //    new WaterLevelModel { Id = 1, WaterLevelValue = 10 },
@@ -36,14 +34,10 @@ namespace PlanteJuicingREST.Repositories
 
         public List<WaterLevelModel> GetAllWaterLevel()
         {
-
             List<WaterLevelModel> _waterLevelList = new List<WaterLevelModel>();
             _waterLevelList = _context.WaterLevel.ToList();
             return _waterLevelList;
-
         }
-
-        
     }
  
 }
