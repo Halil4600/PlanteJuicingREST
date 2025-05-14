@@ -62,13 +62,5 @@ namespace PlanteJuicingREST.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
     }
-    // 
-
-
-
-
-
-
 }

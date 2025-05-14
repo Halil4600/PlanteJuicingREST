@@ -1,59 +1,46 @@
 using Microsoft.EntityFrameworkCore;
 using PlanteJuicingREST;
 using PlanteJuicingREST.Interface;
+using PlanteJuicingREST.PDbContext;
 using PlanteJuicingREST.Repositories;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
-    builder.Services.AddCors(options =>
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", builder =>
     {
-       options.AddPolicy("AllowAllOrigins",
-                        builder =>
-            {
-                      builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-            });
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
     });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddScoped<IJordfugtighedRepository, JordfugtighedRepository>();
 
-builder.Services.AddSingleton<ISoilMoistureRepository, SoilMoistureRepository>();
-builder.Services.AddSingleton<ITempRepository, TempRepository>();
-builder.Services.AddSingleton<IWaterLevelRepository, WaterLevelRepository>();
+// Register the repositories
+builder.Services.AddScoped<ISoilMoistureRepository, SoilMoistureRepository>();
+builder.Services.AddScoped<ITempRepository, TempRepository>();
+builder.Services.AddScoped<IWaterLevelRepository, WaterLevelRepository>();
 
+// Register the DbContext with connection string
+builder.Services.AddDbContext<PlantDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PlantDatabaseConnection")));
 
-// Add services to the container.
-
-
-//builder.Services.AddDbContext<PlanteJucingDbContext>(options =>
-//    options.UseSqlServer("Data Source=mssql17.unoeuro.com,1433;Initial Catalog=professionaleducationnetworkforinnovativesolutions_dk_db_jord;User ID=professionaleducationnetwor_dk;Password=yEA9Hna25RtmGxpkfgdB;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite; MultiSubnetFailover=False"));
-//builder.Services.AddTransient<IJordfugtighedRepository, JordfugtighedRepository>();
-
-
+// Register controllers
 builder.Services.AddControllers();
 
-
-// dbContext med connection string 
-
-// tilf�j transient med med vores jordfugtighedsrepository for at forbind dbcontext med database 
-// public dbset <jordFugtighed> jordfugtigheds { get; set; }
 var app = builder.Build();
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("AllowAllOrigins");
 
-// Configure the HTTP request pipeline.
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
