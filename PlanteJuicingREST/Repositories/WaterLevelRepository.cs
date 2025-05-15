@@ -7,7 +7,7 @@ namespace PlanteJuicingREST.Repositories
 {
     public class WaterLevelRepository : IWaterLevelRepository
     {
-        private static int nextId = 4;
+       private static int nextId = 1;
 
         private readonly PlantDbContext _context;
 
@@ -20,17 +20,11 @@ namespace PlanteJuicingREST.Repositories
 
         public WaterLevelModel Add(WaterLevelModel waterLevelModel)
         {
-            waterLevelModel.Id = nextId++;
+           waterLevelModel.Id = nextId++;
             _context.WaterLevel.Add(waterLevelModel);
             _context.SaveChanges();
             return waterLevelModel;
         }
-        //private List<WaterLevelModel> _waterLevelList = new List<WaterLevelModel>()
-        //{
-        //    new WaterLevelModel { Id = 1, WaterLevelValue = 10 },
-        //    new WaterLevelModel { Id = 2, WaterLevelValue = 20 },
-        //    new WaterLevelModel { Id = 3, WaterLevelValue = 30 },
-        //};
 
         public List<WaterLevelModel> GetAllWaterLevel()
         {

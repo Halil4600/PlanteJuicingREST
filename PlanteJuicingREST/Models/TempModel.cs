@@ -1,10 +1,15 @@
-﻿namespace PlanteJuicingREST.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace PlanteJuicingREST.Models
 {
     public class TempModel
     {
         private int _id;
         private int _temp;
 
+
+        
         public int Id
         {
             get => _id;

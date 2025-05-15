@@ -1,4 +1,7 @@
-﻿namespace PlanteJuicingREST.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace PlanteJuicingREST.Models
 {
     public class WaterLevelModel
     {
@@ -19,7 +22,7 @@
         }
 
 
-
+       
         public int WaterLevelValue
         {
             get => _waterLevel;

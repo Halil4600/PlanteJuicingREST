@@ -1,12 +1,15 @@
-﻿namespace PlanteJuicingREST.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace PlanteJuicingREST.Models
 {
     public class SoilMoistureModel
     {
+
         private int _id;
         private int _soilMoisture;
-        
-       
-       
+
+
 
         public int Id
         {
