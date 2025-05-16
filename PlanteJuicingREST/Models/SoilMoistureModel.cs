@@ -16,8 +16,8 @@ namespace PlanteJuicingREST.Models
             get => _id;
             set
             {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException("id must be higher than 0");
+                //if (value < 0)
+                //    throw new ArgumentOutOfRangeException("id must be higher than 0");
                 _id = value;
             }
         }
